@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Public::HobbysControllerTest < ActionDispatch::IntegrationTest
+class HobbyTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
