@@ -13,7 +13,6 @@ scope module: :public do
   # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
   get 'users/information/edit' => 'users#edit', as: 'edit_information'
   patch 'users/information' => 'users#update', as: 'update_information'
-
   resources :hobbies
 end
   resources :genres, only: [:index, :create, :edit, :update]
