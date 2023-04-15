@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2023_04_11_053237) do
 
   create_table "hobbies", force: :cascade do |t|
     t.integer "genre_id", null: false
+    t.integer "user_id", null: false
     t.string "name", null: false
     t.text "introduction", null: false
     t.boolean "is_active", default: true, null: false

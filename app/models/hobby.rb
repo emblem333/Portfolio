@@ -1,4 +1,5 @@
 class Hobby < ApplicationRecord
+  belongs_to :user, optional: true
   belongs_to :genre
   has_one_attached :image
   validate :image_type

@@ -1,13 +1,9 @@
-<section class="inner">
+<section class="container">
+	<div= "row">
 	<h2 class="section-ttl">詳細</h2>
-	<div class="flex">
-		<div>
-			<div class="image_field">
-				<%= image_tag @hobby.get_image, id: "img_prev", class: "hobby_image" %>
-			</div>
-		</div>
-		<table class="admin_item_info">
+		<table class="col-md-3">
 			<thead>
+				<%= image_tag @hobby.get_image, id: "img_prev", class: "hobby_image", size: "350x300" %>
 				<tr>
 					<th></th>
 					<th></th>
@@ -26,11 +22,10 @@
 					<td>ジャンル</td>
 					<td><%= link_to @hobby.genre.name, hobbies_path(genre_id: @hobby.genre_id), class: "underline" %></td>
 				</tr>
-				<tr>
+			<% if @hobby.user == current_user %>
+			<td><%= link_to "編集する", edit_hobby_path(@hobby), class: "btn btn-success" %></td>
+			<% end %>
 			</tbody>
 		</table>
-		<div class="flex align-center pl5">
-			<%= link_to "編集する", edit_hobby_path(@hobby), class: "btn btn-success" %>
-		</div>
-	</div>
+</div>
 </section>

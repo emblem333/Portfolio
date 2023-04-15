@@ -1,5 +1,5 @@
 class Public::HobbiesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :ensure_hobby, only: [:show, :edit, :update]
   def new
     @hobby = Hobby.new
@@ -19,16 +19,14 @@ class Public::HobbiesController < ApplicationController
   end
 
   def show
-    @hobby = Hobby.where_genre_active.find(params[:id])
     @genres = Genre.only_active
+    @user = current_user.id
   end
 
   def create
     @hobby = Hobby.new(hobby_params)
+    @hobby.user_id = current_user.id
     @hobby.save ? (redirect_to hobby_path(@hobby)) : (render :new)
-  end
-
-  def show
   end
 
   def edit
@@ -40,7 +38,7 @@ class Public::HobbiesController < ApplicationController
 
   private
   def hobby_params
-    params.require(:hobby).permit(:genre_id, :name, :introduction, :image, :is_active)
+    params.require(:hobby).permit(:genre_id, :name, :introduction, :image, :is_active, :user_id)
   end
 
   def ensure_hobby
