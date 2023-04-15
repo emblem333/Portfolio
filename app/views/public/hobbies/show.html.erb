@@ -1,31 +1,46 @@
 <section class="container">
-	<div= "row">
-	<h2 class="section-ttl">詳細</h2>
-		<table class="col-md-3">
-			<thead>
-				<%= image_tag @hobby.get_image, id: "img_prev", class: "hobby_image", size: "350x300" %>
-				<tr>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>名</td>
-					<td><%= @hobby.name %></td>
-				</tr>
-				<tr>
-					<td>説明</td>
-					<td><%= @hobby.introduction %></td>
-				</tr>
-				<tr>
-					<td>ジャンル</td>
-					<td><%= link_to @hobby.genre.name, hobbies_path(genre_id: @hobby.genre_id), class: "underline" %></td>
-				</tr>
-			<% if @hobby.user == current_user %>
-			<td><%= link_to "編集する", edit_hobby_path(@hobby), class: "btn btn-success" %></td>
-			<% end %>
-			</tbody>
-		</table>
+<div= "row">
+<h2 class="section-ttl">詳細</h2>
+	<table class="col-md-3">
+		<thead>
+			<%= image_tag @hobby.get_image, id: "img_prev", class: "hobby_image", size: "350x300" %>
+			<tr>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>名</td>
+				<td><%= @hobby.name %></td>
+			</tr>
+			<tr>
+				<td>説明</td>
+				<td><%= @hobby.introduction %></td>
+			</tr>
+			<tr>
+				<td>ジャンル</td>
+				<td><%= link_to @hobby.genre.name, hobbies_path(genre_id: @hobby.genre_id), class: "underline" %></td>
+			</tr>
+			<tr>
+				<th>
+					<% if @hobby.favorite?(current_user) %>
+						<!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+    				<%= link_to hobby_favorite_path(@hobby.id), method: :delete do %>
+        			<span style="color:red;">❤︎</span>
+    				<% end %>
+					<% else %>
+ 					<!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+    				<%= link_to hobby_favorite_path(@hobby.id), method: :hobby do %>
+        			<span>❤︎</span>
+    				<% end %>
+					<% end %>
+				</th>
+			</tr>
+		<% if @hobby.user == current_user %>
+		<td><%= link_to "編集する", edit_hobby_path(@hobby), class: "btn btn-success" %></td>
+		<% end %>
+		</tbody>
+	</table>
 </div>
 </section>
