@@ -5,9 +5,9 @@ class Hobby < ApplicationRecord
   has_one_attached :image
   validate :image_type
 
-def favorited?(user)#「ログイン中のユーザーがその投稿に対していいねをしているか」を判断
-   favorites.where(user_id: user.id).exists?
-end
+  def favorited?(user)#「ログイン中のユーザーがその投稿に対していいねをしているか」を判断
+    favorites.where(user_id: user.id).exists?
+  end
 
   def get_image(*size)
     unless image.attached?

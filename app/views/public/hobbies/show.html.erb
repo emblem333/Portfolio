@@ -24,15 +24,15 @@
 			</tr>
 			<tr>
 				<th>
-					<% if @hobby.favorite?(current_user) %>
+					<% if @hobby.favorited?(current_user) %>
 						<!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-    				<%= link_to hobby_favorite_path(@hobby.id), method: :delete do %>
-        			<span style="color:red;">❤︎</span>
+    				<%= link_to hobby_favorites_path(@hobby.id), method: :delete do %>
+        			<span style="color:red;">❤︎<%= @hobby.favorites.count %></span>
     				<% end %>
 					<% else %>
  					<!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-    				<%= link_to hobby_favorite_path(@hobby.id), method: :hobby do %>
-        			<span>❤︎</span>
+    				<%= link_to hobby_favorites_path(@hobby.id), method: :post do %>
+        			<span>❤︎<%= @hobby.favorites.count %></span>
     				<% end %>
 					<% end %>
 				</th>
