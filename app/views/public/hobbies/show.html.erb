@@ -6,8 +6,7 @@
 			<%= image_tag @hobby.get_image, id: "img_prev", class: "hobby_image", size: "350x300" %>
 			<tr>
 				<th></th>
-				<th></th>
-				<%= render "comment", hobby: @hobby %>
+			</th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -44,5 +43,7 @@
 		<% end %>
 		</tbody>
 	</table>
+			<%= render "comment_form", hobby: @hobby, hobby_comment: @hobby_comment %>
+		<%= render "comment", hobby: @hobby %>
 </div>
 </section>

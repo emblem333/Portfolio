@@ -1,4 +1,5 @@
 class Public::HobbyCommentsController < ApplicationController
+
   def create
     @hobby = Hobby.find(params[:hobby_id])
     @comment = current_user.hobby_comments.new(hobby_comment_params)
@@ -11,8 +12,9 @@ class Public::HobbyCommentsController < ApplicationController
   end
 
 def destroy
-  if HobbyComment.find_by(id: params[:id], hobby_id: params[:hobby_id]).destroy # 対象のHobbyCommentを検索
-    flash.now[:alert] = '投稿を削除しました'
+  @hobby = Hobby.find(params[:hobby_id])
+  if HobbyComment.find_by(params[:id]).destroy # 対象のHobbyCommentを検索
+      flash.now[:alert] = '投稿を削除しました'
   else
     flash.now[:alert] = '投稿が見つかりませんでした' # HobbyCommentが見つからない場合のエラーメッセージ
   end
