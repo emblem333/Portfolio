@@ -34,6 +34,7 @@
             <div class="btn-group">
             </div>
           <small class="text-muted"><%= hobby.created_at.strftime('%Y/%m/%d') %></small>
+          <small><%#= link_to "#{@hobby.post_comments.count} コメント", post_image_path(@hobby.id) %></small>
         </div>
       </div>
     </div>

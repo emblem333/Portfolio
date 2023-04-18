@@ -7,6 +7,7 @@
 			<tr>
 				<th></th>
 				<th></th>
+				<%= render "comment", hobby: @hobby %>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,6 +40,7 @@
 			</tr>
 		<% if @hobby.user == current_user %>
 		<td><%= link_to "編集する", edit_hobby_path(@hobby), class: "btn btn-success" %></td>
+		<td><%= link_to "削除する", @hobby, method: :delete ,class: "btn btn-danger" %></td>
 		<% end %>
 		</tbody>
 	</table>

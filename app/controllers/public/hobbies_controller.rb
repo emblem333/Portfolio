@@ -1,6 +1,7 @@
 class Public::HobbiesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :ensure_hobby, only: [:show, :edit, :update]
+  before_action :ensure_hobby, only: [:show, :edit, :update, :destroy]
+
   def new
     @hobby = Hobby.new
   end
@@ -21,6 +22,7 @@ class Public::HobbiesController < ApplicationController
   def show
     @genres = Genre.only_active
     @user = current_user.id
+    @hobby_comment = HobbyComment.new
   end
 
   def create
@@ -34,6 +36,11 @@ class Public::HobbiesController < ApplicationController
 
   def update
     @hobby.update(hobby_params) ? (redirect_to hobbies_path(@hobby)) : (render :edit)
+  end
+
+  def destroy
+    @hobby.destroy
+    redirect_to hobbies_path
   end
 
   private

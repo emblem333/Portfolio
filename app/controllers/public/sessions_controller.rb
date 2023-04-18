@@ -31,12 +31,10 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     root_path
   end
-  
-  def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
-      user.password = SecureRandom.urlsafe_base64
-      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
-      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
-    end
+
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to hobbies_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 end

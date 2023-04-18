@@ -15,6 +15,7 @@ scope module: :public do
   patch 'users/information' => 'users#update', as: 'update_information'
   resources :hobbies do
     resource :favorites, only: [:create, :destroy]
+    resource :hobby_comments, only: [:create, :destroy]
   end
 end
   resources :genres, only: [:index, :create, :edit, :update]
