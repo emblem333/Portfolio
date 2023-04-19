@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/earlyaccess/notosansjapanese.css');/* データを読み込む */
-
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
 body,main {
     font-family: "Noto Sans Japanese";  /* フォントを指定 */
 }
-
+.shuuume:visited {
+    font-family: 'Kalam', cursive;
+    text-decoration: none;
+    color: white ;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

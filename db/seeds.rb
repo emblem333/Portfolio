@@ -12,25 +12,22 @@ Admin.create!(
 
 Genre.create!(
   [
+    {name: "スポーツ",is_active: true,},
+    {name: "音楽",is_active: true,},
+    {name: "アウトドア",is_active: false,},
+    {name: "車・バイク",is_active: false,},
+    {name: "ゲーム",is_active: true,},
+    {name: "ギャンブル",is_active: true,},
+    {name: "芸術",is_active: true,},
+    {name: "その他",is_active: true,}
+  ]
+)
+
+User.create!(
+  [
     {
-      name: "野球",
-      is_active: true,
+    email: "0@0",
+    password: "000000",
     },
-    {
-      name: "サッカー",
-      is_active: true,
-    },
-    {
-      name: "釣り",
-      is_active: false,
-    },
-    {
-      name: "ドライブ",
-      is_active: false,
-    },
-    {
-      name: "卓球",
-      is_active: true,
-    }
   ]
 )

@@ -1,12 +1,13 @@
+  <div class="col-md-2">
+  <h4>ジャンル一覧</h4>
+  <% @genres.each do |genre| %>
+   <%= link_to genre.name, hobbies_path(genre_id: genre.id), class: "btn btn-primary mb-2" %>
+  <% end %>
+  </div>
 <div class="container">
   <div class="row d-flex justify-content-start">
-    <div class="col-md-2">
-      <h4>ジャンル一覧</h4>
-      <% @genres.each do |genre| %>
-        <%= link_to genre.name, hobbies_path(genre_id: genre.id), class: "btn btn-primary mb-2" %>
-      <% end %>
+
     </div>
-  </div>
 
   <div class="row">
     <% if params[:genre_id] %>
