@@ -30,6 +30,7 @@
               <h4><%= hobby.name %></h4>
               <h5><%= hobby.introduction %></h5>
             </div>
+            <%= link_to hobby.title, hobby_path(hobby) %>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
               </div>
@@ -45,21 +46,3 @@
   <% end %>
   </div>
 </div>
-
-<h2>Tag Actions --></h2>
-<%= link_to 'Tags List', tags_path %>
-		<%# if @hobbies.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
-			<!--<div class="card-boddy">-->
-				<%#= @hobbies.each do |hobby| %>
-					<%#= link_to hobby_path(hobby) do %>
-						<%#= image_tag hobby.get_image, format: "jpeg", fallback: "no-image.png",size: "200x200" %>
-						<!--<h5><%#= hobby.genre.name %></h5>-->
-						<!--<p class= "card-title"><%#= hobby.name %></p>-->
-							<%# end %>
-						<!--</p>-->
-					<%# end %>
-				<%# end %>
-			<!--</div>-->
-			<%#= paginate @items %>
-		<%# else %>
-		<%# end %>

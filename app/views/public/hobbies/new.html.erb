@@ -2,14 +2,3 @@
 	<h2 class="section-ttl">自分の趣味を紹介してみよう！</h2>
   <%= render 'form', hobby: @hobby, url: hobbies_path, submit: '登録' %>
 </section>
-
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
-
-<h2>Actions --></h2>
-<%= link_to 'Top', root_path %>
-
-<h2>Post --></h2>
-<%= form_with model: @hobby do |hobby| %>
-  <%= render 'tag', hobby: hobby %>
-<% end %>

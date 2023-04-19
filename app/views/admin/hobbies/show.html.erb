@@ -39,7 +39,6 @@
             <% end %>
           </th>
         </tr>
-        <% if @hobby.user == current_user %>
           <tr>
             <td class="text-center" colspan="2">
               <%= link_to "編集する", edit_hobby_path(@hobby), class: "btn btn-success mr-2" %>
@@ -53,13 +52,5 @@
 </div>
 
 <h3>Content --></h3>
-<h3>Tags --></h3>
-<ul>
-  <%# 該当のPostからアソシエーションでタグを取得 %>
-  <% @hobby.tags.each do |tag| %>
-    <%# タグを展開 %>
-    <li>
-      <%= link_to tag.name, tag_path(tag) %>
-    </li>
-  <% end %>
-</ul>
+<%# simple_formatは、pタグで囲み、改行コードをbrに変換する %>
+<%= simple_format(@hobby.content) %>

@@ -7,7 +7,7 @@ devise_for :users, skip: [:passwords], controllers: {
   sessions: 'public/sessions'
 }
 scope module: :public do
-  root 'homes#top'
+root 'homes#top'
   resources :tags, only: %w[index show destroy]
   get 'users/mypage' => 'users#show', as: 'mypage'
   # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
@@ -25,6 +25,12 @@ end
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
+namespace :admin do
+  resources :hobbies, only: [:index, :show, :destroy]
+  resources :users, only: [:index, :show, :edit, :update]
+  resources :genres, only: [:index, :create, :edit, :update]
+  resources :hobby_comments, only: [:destroy]
+end
 
 #ゲストログイン
   devise_scope :user do

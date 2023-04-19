@@ -4,6 +4,6 @@ class TagMap < ApplicationRecord
   belongs_to :tag
 
   # 念のためのバリデーション
-  validates :post_id, presence: true
+  validates :hobby_id, presence: true
   validates :tag_id, presence: true
 end

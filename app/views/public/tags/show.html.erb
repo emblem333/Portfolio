@@ -12,9 +12,9 @@
 
 <%# タグに関連付く記事一覧 %>
 <ul>
-  <% @tag.posts.each do |post| %>
+  <% @tag.hobbies.each do |hobby| %>
     <li>
-      <%= link_to post.title, post_path(post) %>
+      <%= link_to hobby.tags, hobby_path(hobby) %>
     </li>
   <% end %>
 </ul>

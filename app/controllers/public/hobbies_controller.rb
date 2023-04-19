@@ -30,26 +30,32 @@ class Public::HobbiesController < ApplicationController
     @hobby.user_id = current_user.id
     @hobby.save ? (redirect_to hobby_path(@hobby)) : (render :new)
 
-    # Postを保存
-    if @hobby.save_tags(params[:hobby][:tag])
-      # タグの保存
-      # 成功したらトップページへリダイレクト
-      #redirect_to hobbies_path
+    if @hobby.save
+      @hobby.save_tags(params[:hobby][:tag])
     else
-      # 失敗した場合は、newへ戻る
       render :new
     end
   end
+    # Postを保存
+      # タグの保存
+      # 成功したらトップページへリダイレクト
+      #redirect_to hobbies_path
+    #else
+      # 失敗した場合は、newへ戻る
+      #render :new
+    #end
+
 
   def edit
   end
 
   def update
-    @hobby.update(hobby_params) ? (redirect_to hobbies_path(@hobby)) : (render :edit)
-    if @post.save_tags(params[:hobby][:tag])
+    #@hobby.update(hobby_params) ? (redirect_to hobbies_path(@hobby)) : (render :edit)
+    if @hobby.update(hobby_params)
+      @hobby.save_tags(params[:hobby][:tag])
       # タグの更新
       # 成功したら投稿記事へリダイレクト
-      redirect_to post_path(@post)
+      redirect_to redirect_to hobbies_path(@hobby)
     else
       # 失敗した場合は、editへ戻る
       render :edit
@@ -62,8 +68,9 @@ class Public::HobbiesController < ApplicationController
   end
 
   private
+
   def hobby_params
-    params.require(:hobby).permit(:genre_id, :name, :introduction, :image, :is_active, :user_id, :title, :content)
+    params.require(:hobby).permit(:genre_id, :name, :introduction, :image, :is_active, :user_id)
   end
 
   def ensure_hobby
