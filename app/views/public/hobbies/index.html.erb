@@ -1,46 +1,54 @@
-<div class="row d-flex justify-content-start">
-    <div class= "col-md-2">
-      <h4>ジャンル一覧</h4>
-        <% @genres.each do |genre| %>
-        <%= link_to genre.name, hobbies_path(genre_id: genre.id)%>
-        <% end %>
-      </div>
-    </div>
-</div>
-
 <div class="container">
-<div class="row">
-  <div class="col-md-4">
-    <% if params[:genre_id] %>
-      <h2><%= @genre.name %>の趣味一覧 (全<%= @all_hobbies_count %>件)</h2>
-    <% else %>
-      <h2>趣味一覧 (全<%= @all_hobbies_count %>件)</h2>
-    <% end %>
- <% @hobbies.each do |hobby| %>
-    <div class="card mb-4 shadow-sm">
-        <div class="bd-placeholder-img card-img-top">
-          <%= link_to hobby_path(hobby) do %>
-            <%= image_tag hobby.get_image, format: "jpeg", fallback: "no-image.png",size: "350x200" %>
-              <h4><div class="badge badge-primary"><%= hobby.genre.name %></div></h4>
-            <% end %>
-        </div>
-
-        <div class="card-body">
-          <div class="card-text text-center">
-            <h4><%= hobby.name %></h4>
-            <h5><%= hobby.introduction %></h5>
-          </div>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-            </div>
-          <small class="text-muted"><%= hobby.created_at.strftime('%Y/%m/%d') %></small>
-          <small><%#= link_to "#{@hobby.post_comments.count} コメント", post_image_path(@hobby.id) %></small>
-        </div>
-      </div>
+  <div class="row d-flex justify-content-start">
+    <div class="col-md-2">
+      <h4>ジャンル一覧</h4>
+      <% @genres.each do |genre| %>
+        <%= link_to genre.name, hobbies_path(genre_id: genre.id), class: "btn btn-primary mb-2" %>
+      <% end %>
     </div>
   </div>
-	<% end %>
+
+  <div class="row">
+    <% if params[:genre_id] %>
+      <h2 class="col-md-12"><%= @genre.name %>の趣味一覧 (全<%= @all_hobbies_count %>件)</h2>
+      <!--<h3><%#= @genres.name %>の投稿は現在ありませんでした。</h3>-->
+    <% else %>
+      <h2 class="col-md-12">趣味一覧 (全<%= @all_hobbies_count %>件)</h2>
+    <% end %>
+  </div>
+  <div class="row">
+  <% if @hobbies.first %>
+    <% @hobbies.each do |hobby| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <%= link_to hobby_path(hobby) do %>
+            <%= image_tag hobby.get_image, format: "jpeg", fallback: "no-image.png", class: "bd-placeholder-img card-img-top", size: "350x200" %>
+            <h4><div class="badge badge-primary"><%= hobby.genre.name %></div></h4>
+          <% end %>
+          <div class="card-body">
+            <div class="card-text text-center">
+              <h4><%= hobby.name %></h4>
+              <h5><%= hobby.introduction %></h5>
+            </div>
+            <%= link_to hobby.title, hobby_path(hobby) %>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+              </div>
+              <small class="text-muted"><%= hobby.created_at.strftime('%Y/%m/%d') %></small>
+              <small><%#= link_to "#{@hobby.post_comments.count} コメント", post_image_path(@hobby.id) %></small>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h2>現在その趣味投稿はありません。</h2>
+  <% end %>
+  </div>
 </div>
+
+<h2>Tag Actions --></h2>
+<%= link_to 'Tags List', tags_path %>
 		<%# if @hobbies.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
 			<!--<div class="card-boddy">-->
 				<%#= @hobbies.each do |hobby| %>
@@ -55,19 +63,4 @@
 			<!--</div>-->
 			<%#= paginate @items %>
 		<%# else %>
-			<h3><%#= @genre.name %>の投稿は現在ありません。</h3>
 		<%# end %>
-<div class="row　justify-content-center">
-  <div class="col-md-6">
-    <div class="card border-dark">
-      <div class="card-body">
-        <h5 class="card-title">カード1のタイトル</h5>
-        <p class="card-text">ここにカード1の説明文を記述します。</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card border-dark">
-      <div class="card-body">
-        <h5 class="card-title">カード2のタイトル</h5>
-        <p class="card-text">ここにカード2の説明文

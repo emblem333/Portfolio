@@ -51,3 +51,18 @@
     </table>
 	</div>
 </div>
+
+<h3>Content --></h3>
+<%# simple_formatは、pタグで囲み、改行コードをbrに変換する %>
+<%= simple_format(@hobby.content) %>
+
+<h3>Tags --></h3>
+<ul>
+  <%# 該当のPostからアソシエーションでタグを取得 %>
+  <% @hobby.tags.each do |tag| %>
+    <%# タグを展開 %>
+    <li>
+      <%= link_to tag.name, tag_path(tag) %>
+    </li>
+  <% end %>
+</ul>
