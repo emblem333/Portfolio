@@ -1,14 +1,18 @@
+<% if flash[:notice] %>
+    <p class="text-active"><%= flash[:notice] %></p>
+<% end %>
+
   <div class="col-md-2">
   <h4>ジャンル一覧</h4>
   <% @genres.each do |genre| %>
    <%= link_to genre.name, hobbies_path(genre_id: genre.id), class: "btn btn-primary mb-2" %>
-  <% end %>
+  <% end %></br>
+  <h4>タグ一覧</h4>
+   <%= link_to 'Tags List', tags_path %>
   </div>
 <div class="container">
   <div class="row d-flex justify-content-start">
-
-    </div>
-
+  </div>
   <div class="row">
     <% if params[:genre_id] %>
       <h2 class="col-md-12"><%= @genre.name %>の趣味一覧 (全<%= @all_hobbies_count %>件)</h2>
@@ -46,9 +50,6 @@
   <% end %>
   </div>
 </div>
-
-<h2>Tag Actions --></h2>
-<%= link_to 'Tags List', tags_path %>
 		<%# if @hobbies.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
 			<!--<div class="card-boddy">-->
 				<%#= @hobbies.each do |hobby| %>

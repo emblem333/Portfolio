@@ -16,4 +16,11 @@ class User < ApplicationRecord
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
     end
   end
+
+  def guest_check
+    if @user.email == User.find(1)
+      redirect_to hobbies_path, notice: "このページを見るには会員登録が必要です。"
+    end
+  end
+
 end
