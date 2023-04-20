@@ -29,13 +29,15 @@ body,main {
 
 
 .container {
-  max-width: 960px;
+  max-width: 980px;
 }
 
 .card-deck .card {
   min-width: 220px;
 }
 
+.justify-content-between {
+}
 .sidebar {
   width: 160px;
   height: max-content;
