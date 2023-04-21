@@ -5,8 +5,9 @@ class Hobby < ApplicationRecord
   has_many :hobby_comments, dependent: :destroy
   has_many :tag_maps, dependent: :destroy, foreign_key: 'hobby_id'
   has_many :tags, through: :tag_maps
+
   has_one_attached :image
-  validate :image_type
+  validate :image
 
   def favorited?(user)#「ログイン中のユーザーがその投稿に対していいねをしているか」を判断
     favorites.where(user_id: user.id).exists?

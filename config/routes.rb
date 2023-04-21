@@ -28,7 +28,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 namespace :admin do
   resources :hobbies, only: [:index, :show, :destroy]
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :destroy]
   resources :genres, only: [:index, :create, :edit, :update]
   resources :hobby_comments, only: [:destroy]
 end

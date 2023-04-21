@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
-  before_action :ensure_user, only: [:show, :edit, :update]
+  before_action :ensure_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -12,8 +12,9 @@ class Admin::UsersController < ApplicationController
   def edit
   end
 
-  def update
-    @user.update(user_params) ? (redirect_to admin_user_path(@user)) : (render :edit)
+  def destroy
+    @user.destroy
+    redirect_to admin_users_path
   end
 
   private

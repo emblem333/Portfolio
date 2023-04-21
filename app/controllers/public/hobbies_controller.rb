@@ -7,6 +7,7 @@ class Public::HobbiesController < ApplicationController
   end
 
   def index
+    @users = User.all
     @genres = Genre.all
     @hobbies = Hobby.all
     if params[:genre_id]
@@ -55,7 +56,7 @@ class Public::HobbiesController < ApplicationController
       @hobby.save_tags(params[:hobby][:tag])
       # タグの更新
       # 成功したら投稿記事へリダイレクト
-      redirect_to redirect_to hobbies_path(@hobby)
+      redirect_to hobbies_path(@hobby)
     else
       # 失敗した場合は、editへ戻る
       render :edit

@@ -24,10 +24,9 @@ Genre.create!(
 )
 
 User.create!(
-  [
-    {
-    email: "0@0",
-    password: "000000",
-    },
-  ]
+  name: "管理者",
+  email: "admin@admin",
+  password: "adminadmin",
+  password_confirmation: "adminadmin",
+  admin: true
 )

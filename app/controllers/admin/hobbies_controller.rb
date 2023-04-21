@@ -1,6 +1,6 @@
 class Admin::HobbiesController < ApplicationController
   before_action :authenticate_admin!
-  before_action :ensure_hobby, only: [:show, :edit, :update]
+  before_action :ensure_hobby, only: [:show, :edit, :destroy]
 
   def new
     @hobby = Hobby.new
@@ -20,26 +20,21 @@ class Admin::HobbiesController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    @item.save ? (redirect_to admin_item_path(@item)) : (render :new)
   end
 
   def show
     @genres = Genre.only_active
-    @user = current_user.id
-    @hobby_comment = HobbyComment.new
   end
 
   def edit
   end
 
   def update
-    @hobby.update(item_params) ? (redirect_to admin_item_path(@hobby)) : (render :edit)
   end
 
   def destroy
-    @hobby.destroy
-    redirect_to hobbies_path
+    @hobby.destroy(admin_hobby_path)
+    redirect_to admin_hobbies_path
   end
 
   private
@@ -48,7 +43,8 @@ class Admin::HobbiesController < ApplicationController
     params.require(:hobby).permit(:genre_id, :name, :introduction, :image, :is_active, :user_id, :tag)
   end
 
-  def ensure_item
+  def ensure_hobby
+    @user = Admin.find(params[:id])
     @hobby = Hobby.find(params[:id])
   end
 end

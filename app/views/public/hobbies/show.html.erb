@@ -3,7 +3,7 @@
 			<%= render "comment_form", hobby: @hobby, hobby_comment: @hobby_comment %>
 			<%= render "comment", hobby: @hobby %>
 	</div>
-	<div class="col-md-6 order-md-1">
+	<div class="col-md-5 ml-5">
     <h2 class="section-ttl text-center">詳細</h2>
     <table class="table table-bordered mx-auto">
       <thead>
@@ -27,7 +27,7 @@
           <td class="text-left"><%= link_to @hobby.genre.name, hobbies_path(genre_id: @hobby.genre_id), class: "underline" %></td>
         </tr>
         <tr>
-          <th class="text-center">
+          <td class="text-right">
             <% if @hobby.favorited?(current_user) %>
               <%= link_to hobby_favorites_path(@hobby.id), method: :delete, class: "btn btn-danger" do %>
                 <i class="fas fa-heart"></i> <%= @hobby.favorites.count %>
@@ -37,10 +37,18 @@
                 <i class="far fa-heart"></i> <%= @hobby.favorites.count %>
               <% end %>
             <% end %>
-          </th>
-        </tr>
-        <% if @hobby.user == current_user %>
+          </td>
+        	</tr>
+        	<tr>
+						<th class="text-right">タグ</th>
+         		<td>
+							<% @hobby.tags.each do |tag| %>
+								<%= link_to tag.name, tag_path(tag),class: "btn btn-outline-dark" %>
+							<% end %>
+						</td>
+					</tr>
           <tr>
+        <% if @hobby.user == current_user %>
             <td class="text-center" colspan="2">
               <%= link_to "編集する", edit_hobby_path(@hobby), class: "btn btn-success mr-2" %>
               <%= link_to "削除する", @hobby, method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか?" } %>
@@ -51,15 +59,3 @@
     </table>
 	</div>
 </div>
-
-<h3>Content --></h3>
-<h3>Tags --></h3>
-<ul>
-  <%# 該当のPostからアソシエーションでタグを取得 %>
-  <% @hobby.tags.each do |tag| %>
-    <%# タグを展開 %>
-    <li>
-      <%= link_to tag.name, tag_path(tag) %>
-    </li>
-  <% end %>
-</ul>
