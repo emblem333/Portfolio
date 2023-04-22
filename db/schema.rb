@@ -65,12 +65,10 @@ ActiveRecord::Schema.define(version: 2023_04_19_040014) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "hobby_id", null: false
+    t.integer "user_id"
+    t.integer "hobby_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["hobby_id"], name: "index_favorites_on_hobby_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -103,8 +101,6 @@ ActiveRecord::Schema.define(version: 2023_04_19_040014) do
     t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["hobby_id"], name: "index_tag_maps_on_hobby_id"
-    t.index ["tag_id"], name: "index_tag_maps_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -129,8 +125,4 @@ ActiveRecord::Schema.define(version: 2023_04_19_040014) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "favorites", "hobbies"
-  add_foreign_key "favorites", "users"
-  add_foreign_key "tag_maps", "hobbies"
-  add_foreign_key "tag_maps", "tags"
 end
