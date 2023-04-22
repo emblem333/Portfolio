@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>タグ一覧</h1>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <ul class="list-group">
+        <% @tags.each do |tag| %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <!-- タグの名前と、関連付く記事数を表示 -->
+            <%= link_to "#{tag.name}", tag_path(tag) %>
+            <span class="badge badge-primary badge-pill"><%= tag.hobbies.count %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

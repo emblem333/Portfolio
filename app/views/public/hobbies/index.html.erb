@@ -1,0 +1,68 @@
+<% if flash[:notice] %>
+  <p class="text-active"><%= flash[:notice] %></p>
+<% end %>
+
+<div class="row">
+  <div class="col-md-2">
+    <h4>ジャンル一覧</h4>
+    <% @genres.each do |genre| %>
+      <%= link_to genre.name, hobbies_path(genre_id: genre.id), class: "btn btn-primary mb-2" %>
+    <% end %></br>
+    <h4>現在の有効タグ</h4>
+		<% @tags.each do |tag| %>
+			<%= link_to tag.name, tag_path(tag),class: "btn btn-outline-dark" %>
+		<% end %>
+</div>
+  <div class="col-md-10">
+    <div class="container">
+      <% if params[:genre_id] %>
+        <h2><%= @genre.name %>の趣味一覧 (全<%= @all_hobbies_count %>件)</h2>
+        <!--<h3><%#= @genres.name %>の投稿は現在ありませんでした。</h3>-->
+      <% else %>
+        <h2>趣味一覧 (全<%= @all_hobbies_count %>件)</h2>
+      <% end %>
+
+      <div class="row">
+        <% if @hobbies.first %>
+          <% @hobbies.each do |hobby| %>
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <%= link_to hobby_path(hobby) do %>
+                  <%= image_tag hobby.get_image, format: "jpeg", fallback: "no-image.png", class: "bd-placeholder-img card-img-top", size: "350x200" %>
+                  <h4><div class="badge badge-primary"><%= hobby.genre.name %></div></h4>
+                <% end %>
+                <div class="card-body">
+                  <div class="card-text text-center">
+                    <h4><%= hobby.name %></h4>
+                    <h5><%= hobby.introduction %></h5>
+                  </div>
+                  <small class="text-muted">投稿者<%= hobby.user.name %></small>
+                  <small class="text-muted"><%= hobby.created_at.strftime('%Y/%m/%d') %></small>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <h2>現在その趣味投稿はありません。</h2>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+		<%# if @hobbies.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
+			<!--<div class="card-boddy">-->
+				<%#= @hobbies.each do |hobby| %>
+					<%#= link_to hobby_path(hobby) do %>
+						<%#= image_tag hobby.get_image, format: "jpeg", fallback: "no-image.png",size: "200x200" %>
+						<!--<h5><%#= hobby.genre.name %></h5>-->
+						<!--<p class= "card-title"><%#= hobby.name %></p>-->
+							<%# end %>
+						<!--</p>-->
+					<%# end %>
+				<%# end %>
+			<!--</div>-->
+			<%#= paginate @items %>
+		<%# else %>
+		<%# end %>

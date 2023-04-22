@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-5 order-md-2">
+			<%= render "comment", hobby: @hobby, hobby_comment: @hobby_comment %>
+	</div>
+	<div class="col-md-6 order-md-1 ml-2">
+    <h2 class="section-ttl text-center">詳細</h2>
+    <table class="table table-bordered mx-auto">
+      <thead>
+        <tr>
+          <th class="text-center" colspan="2">
+            <%= image_tag @hobby.get_image, id: "img_prev", class: "hobby_image", size: "350x300" %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="text-right">名</th>
+          <td class="text-left"><%= @hobby.name %></td>
+        </tr>
+        <tr>
+          <th class="text-right">説明</th>
+          <td class="text-left"><%= @hobby.introduction %></td>
+        </tr>
+        <tr>
+          <th class="text-right">ジャンル</th>
+          <td class="text-left"><%= @hobby.genre.name %></td>
+        </tr>
+        	<tr>
+          <td class="text-center" colspan="2">
+            <%= link_to "削除する", @hobby, method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか?" } %>
+          </td>
+      </tbody>
+    </table>
+	</div>
+</div>

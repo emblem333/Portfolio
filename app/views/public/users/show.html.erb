@@ -1,0 +1,26 @@
+<% if flash[:notice] %>
+    <p class="text-active"><%= flash[:notice] %></p>
+<% end %>
+	<h3>マイページ</h3>
+	<h3>
+		登録情報
+			<%= link_to "編集する", edit_information_path, class: "btn btn-success ml2" %>
+			<%= link_to "パスワードを変更する", edit_user_registration_path, class: "btn btn-success ml2" %>
+	</h3>
+	<table>
+		<thead>
+			<th></th>
+			<th></th>
+			<th></th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>ニックネーム</td>
+				<td><%= @user.name %></td>
+			</tr>
+			<tr>
+				<td>メールアドレス</td>
+				<td colspan="2"><%= @user.email %></td>
+			</tr>
+		</tbody>
+		</table>

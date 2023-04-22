@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/earlyaccess/notosansjapanese.css');/* データを読み込む */
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+body,main {
+    font-family: "Noto Sans Japanese";  /* フォントを指定 */
+}
+.shuuume {
+    font-family: 'Kalam', cursive;
+    text-decoration: none;
+    color: white ;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,3 +23,26 @@
  *= require_tree .
  *= require_self
  */
+ body, main {
+  background-color: #B1F9D0; /* ここに新しい背景色を指定します */
+}
+
+
+.container {
+  max-width: 980px;
+}
+
+.card-deck .card {
+  min-width: 220px;
+}
+
+.justify-content-between {
+}
+.sidebar {
+  width: 160px;
+  height: max-content;
+  margin: 100px 20px 0 0;
+  padding: 10px 0 0;
+  text-align: center;
+  border: 4px double #fee;
+  }

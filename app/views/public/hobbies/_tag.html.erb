@@ -1,0 +1,9 @@
+<%#= hobby.label :title, 'タイトル' %>
+<%#= hobby.text_field :title %>
+<%#= hobby.label :content, 'コンテンツ' %>
+<%#= hobby.text_area :content %>
+<%= hobby.label :tag, 'タグ' %><br>
+<%# Edit用に@post.tags.pluck(:name)でタグの配列を取得 %>
+<%= hobby.text_field :tag, value: @hobby.tags.pluck(:name) %><br>
+<small>スペースで区切ることで複数指定できます。</small><br>
+<%#= hobby.submit %>

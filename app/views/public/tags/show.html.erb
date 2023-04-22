@@ -1,0 +1,17 @@
+<h1>タグ詳細</h1>
+
+<%= link_to 'Tags List', tags_path %>
+  <% if admin_signed_in? %>
+  <%= link_to 'Delete', tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'} %>
+  <%end%>
+<%# タグ名 %>
+<h3><%= @tag.name %></h3>
+
+<%# タグに関連付く記事一覧 %>
+<ul>
+  <% @tag.hobbies.each do |hobby| %>
+    <li>
+      <%= link_to hobby.tags, hobby_path(hobby) %>
+    </li>
+  <% end %>
+</ul>

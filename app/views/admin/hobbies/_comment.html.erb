@@ -1,0 +1,11 @@
+<div class="comments-section">
+  <p>コメント件数：<%= hobby.hobby_comments.count %></p>
+  <% hobby.hobby_comments.each do |comment| %>
+    <div class="comment">
+      <span class="comment-user"><%= comment.user.name %></span>
+      <span class="comment-text"><%= comment.comment %></span>
+      <span class="comment-date"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
+        <%= link_to "削除する", admin_hobby_hobby_comment_path(hobby, comment), method: :delete, class: "btn btn-danger btn-sm" %>
+    </div>
+  <% end %>
+</div>
