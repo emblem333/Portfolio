@@ -5,7 +5,9 @@
       <span class="comment-user"><%= comment.user.name %></span>
       <span class="comment-text"><%= comment.comment %></span>
       <span class="comment-date"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
-        <%= link_to "削除する", hobby_hobby_comments_path(hobby, comment), method: :delete, class: "btn btn-danger btn-sm" %>
+      <% if admin_signed_in? || comment.user.name == current_user.name %>
+        <%= link_to "削除する", hobby_comment_path(hobby_comment.hobby, hobby_comment), method: :delete, class: "btn btn-danger btn-sm" %>
+      <% end %>
     </div>
   <% end %>
 </div>

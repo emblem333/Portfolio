@@ -16,7 +16,7 @@ get 'search' => 'homes#search', as: 'search'
   patch 'users/information' => 'users#update', as: 'update_information'
   resources :hobbies do
     resource :favorites, only: [:create, :destroy]
-    resource :hobby_comments, only: [:create, :destroy]
+    resources :hobby_comments, only: [:create, :destroy]
   end
 end
   resources :genres, only: [:index, :create, :edit, :update]
@@ -27,10 +27,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 namespace :admin do
-  resources :hobbies, only: [:index, :show, :destroy]
+  resources :hobbies, only: [:index, :show, :destroy] do
+    resources :hobby_comments, only: [:destroy]
+  end
   resources :users, only: [:index, :show, :edit, :destroy]
   resources :genres, only: [:index, :create, :edit, :update]
-  resources :hobby_comments, only: [:destroy]
 end
 
 #ゲストログイン

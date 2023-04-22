@@ -7,6 +7,7 @@ class Public::HobbiesController < ApplicationController
   end
 
   def index
+    @tags = Tag.all
     @users = User.all
     @genres = Genre.all
     @hobbies = Hobby.all
@@ -22,7 +23,8 @@ class Public::HobbiesController < ApplicationController
 
   def show
     @genres = Genre.only_active
-    @user = current_user.id
+    @hobbies = Hobby.find(params[:id])
+    #@hobby = Hobby.new
     @hobby_comment = HobbyComment.new
   end
 
@@ -37,15 +39,6 @@ class Public::HobbiesController < ApplicationController
       render :new
     end
   end
-    # Postを保存
-      # タグの保存
-      # 成功したらトップページへリダイレクト
-      #redirect_to hobbies_path
-    #else
-      # 失敗した場合は、newへ戻る
-      #render :new
-    #end
-
 
   def edit
   end
@@ -64,8 +57,14 @@ class Public::HobbiesController < ApplicationController
   end
 
   def destroy
-    @hobby.destroy
-    redirect_to hobbies_path
+    if @hobby.user_id == current_user.id
+      @hobby.destroy
+      redirect_to hobbies_path
+      flash[:notice] = "投稿を削除しました"
+    else
+      redirect_to hobbies_path
+      flash[:alert] = "他人の投稿は削除できません"
+    end
   end
 
   private

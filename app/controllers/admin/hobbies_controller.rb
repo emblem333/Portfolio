@@ -44,7 +44,6 @@ class Admin::HobbiesController < ApplicationController
   end
 
   def ensure_hobby
-    @user = Admin.find(params[:id])
     @hobby = Hobby.find(params[:id])
   end
 end

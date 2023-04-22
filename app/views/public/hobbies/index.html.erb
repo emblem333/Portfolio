@@ -8,10 +8,11 @@
     <% @genres.each do |genre| %>
       <%= link_to genre.name, hobbies_path(genre_id: genre.id), class: "btn btn-primary mb-2" %>
     <% end %></br>
-    <h4>タグ一覧</h4>
-    <%= link_to 'Tags List', tags_path %>
-  </div>
-
+    <h4>現在の有効タグ</h4>
+		<% @tags.each do |tag| %>
+			<%= link_to tag.name, tag_path(tag),class: "btn btn-outline-dark" %>
+		<% end %>
+</div>
   <div class="col-md-10">
     <div class="container">
       <% if params[:genre_id] %>

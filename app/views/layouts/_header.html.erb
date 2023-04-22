@@ -17,6 +17,10 @@
     </li>
 
     <li class="nav-item">
+      <%= link_to "タグ一覧", tags_path, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
+    </li>
+
+    <li class="nav-item">
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
     </li>
       <%#= form_tag(admin_search_path, method: :get) do %>
