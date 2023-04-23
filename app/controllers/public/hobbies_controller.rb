@@ -31,10 +31,9 @@ class Public::HobbiesController < ApplicationController
   def create
     @hobby = Hobby.new(hobby_params)
     @hobby.user_id = current_user.id
-    @hobby.save ? (redirect_to hobby_path(@hobby)) : (render :new)
-
     if @hobby.save
       @hobby.save_tags(params[:hobby][:tag])
+      redirect_to hobby_path(@hobby)
     else
       render :new
     end

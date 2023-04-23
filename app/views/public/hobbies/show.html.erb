@@ -1,62 +1,63 @@
-<div class="row">
-  <div class="col-md-6 order-md-2">
-			<%#= render "comment_form", hobbies: @hobbies, hobby_comment: @hobby_comment %>
-			<%#= render "comment", hobby: @hobby %>
-			<%= render "hobby_comment_form", hobbies: @hobbies, hobby_comment: @hobby_comment %>
-	</div>
-	<div class="col-md-5 ml-5">
-    <h2 class="section-ttl text-center">詳細</h2>
-    <table class="table table-bordered mx-auto">
-      <thead>
-        <tr>
-          <th class="text-center" colspan="2">
-            <%= image_tag @hobby.get_image, id: "img_prev", class: "hobby_image", size: "350x300" %>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th class="text-right">名</th>
-          <td class="text-left"><%= @hobby.name %></td>
-        </tr>
-        <tr>
-          <th class="text-right">説明</th>
-          <td class="text-left"><%= @hobby.introduction %></td>
-        </tr>
-        <tr>
-          <th class="text-right">ジャンル</th>
-          <td class="text-left"><%= link_to @hobby.genre.name, hobbies_path(genre_id: @hobby.genre_id), class: "underline" %></td>
-        </tr>
-        <tr>
-          <td class="text-right">
-            <% if @hobby.favorited?(current_user) %>
-              <%= link_to hobby_favorites_path(@hobby.id), method: :delete, class: "btn btn-danger" do %>
-                <i class="fas fa-heart"></i> <%= @hobby.favorites.count %>
-              <% end %>
-            <% else %>
-              <%= link_to hobby_favorites_path(@hobby.id), method: :post, class: "btn btn-outline-danger" do %>
-                <i class="far fa-heart"></i> <%= @hobby.favorites.count %>
-              <% end %>
-            <% end %>
-          </td>
-        	</tr>
-        	<tr>
-						<th class="text-right">タグ</th>
-         		<td>
-							<% @hobby.tags.each do |tag| %>
-								<%= link_to tag.name, tag_path(tag),class: "btn btn-outline-dark" %>
-							<% end %>
-						</td>
-					</tr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5 ml-5">
+      <h2 class="section-ttl text-center">詳細</h2>
+      <table class="table table-bordered mx-auto">
+        <thead>
           <tr>
-        <% if @hobby.user == current_user %>
-            <td class="text-center" colspan="2">
-              <%= link_to "編集する", edit_hobby_path(@hobby), class: "btn btn-success mr-2" %>
-              <%= link_to "削除する", @hobby, method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか?" } %>
+            <th class="text-center" colspan="2">
+              <%= image_tag @hobby.get_image, id: "img_prev", class: "hobby_image", size: "350x300" %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="text-right">名</th>
+            <td class="text-left"><%= @hobby.name %></td>
+          </tr>
+          <tr>
+            <th class="text-right">説明</th>
+            <td class="text-left"><%= @hobby.introduction %></td>
+          </tr>
+          <tr>
+            <th class="text-right">ジャンル</th>
+            <td class="text-left"><%= link_to @hobby.genre.name, hobbies_path(genre_id: @hobby.genre_id), class: "underline" %></td>
+          </tr>
+          <tr>
+            <td class="text-right">
+              <% if @hobby.favorited?(current_user) %>
+                <%= link_to hobby_favorites_path(@hobby.id), method: :delete, class: "btn btn-danger" do %>
+                  <i class="fas fa-heart"></i> <%= @hobby.favorites.count %>
+                <% end %>
+              <% else %>
+                <%= link_to hobby_favorites_path(@hobby.id), method: :post, class: "btn btn-outline-danger" do %>
+                  <i class="far fa-heart"></i> <%= @hobby.favorites.count %>
+                <% end %>
+              <% end %>
             </td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-	</div>
+          <tr>
+            <th class="text-right">タグ</th>
+            <td>
+              <% @hobby.tags.each do |tag| %>
+                <%= link_to tag.name, tag_path(tag),class: "btn btn-outline-dark" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <% if @hobby.user == current_user %>
+              <td class="text-center" colspan="2">
+                <%= link_to "編集する", edit_hobby_path(@hobby), class: "btn btn-success mr-2" %>
+                <%= link_to "削除する", @hobby, method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか?" } %>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-5">
+      <!-- Comment Form -->
+      <%= render "hobby_comment_form", hobbies: @hobbies, hobby_comment: @hobby_comment %>
+    </div>
+  </div>
 </div>

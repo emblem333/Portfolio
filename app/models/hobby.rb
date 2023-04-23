@@ -8,6 +8,8 @@ class Hobby < ApplicationRecord
 
   has_one_attached :image
   validate :image
+  validates :name, presence: true
+  validates :introduction, presence: true
 
   def favorited?(user)#「ログイン中のユーザーがその投稿に対していいねをしているか」を判断
     favorites.where(user_id: user.id).exists?
