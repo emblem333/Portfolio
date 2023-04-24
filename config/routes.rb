@@ -9,7 +9,7 @@ devise_for :users, skip: [:passwords], controllers: {
 scope module: :public do
 root 'homes#top'
 get 'search' => 'homes#search', as: 'search'
-  resources :tags, only: %w[index show destroy]
+  resources :tags, only: [:index, :show, :destroy]
   get 'users/mypage' => 'users#show', as: 'mypage'
   # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
   get 'users/information/edit' => 'users#edit', as: 'edit_information'

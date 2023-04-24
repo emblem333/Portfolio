@@ -27,7 +27,7 @@
           </tr>
           <tr>
             <%= f.label :tag, "タグ", class: "mt-4" %>
-            <%= f.text_field :tag, value: hobby.tags.pluck(:name).join(" "), class: "form-control", placeholder: "複数指定する場合はスペースで区切ってください" %>
+            <%= f.text_field :tag, value: hobby.tags.pluck(:name).join(" "), class: "form-control", placeholder: "複数指定する場合は半角スペースで区切ってください" %>
           </tr>
         </tbody>
       </table>

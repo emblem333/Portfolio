@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <h1>タグ詳細</h1>
 
 <%= link_to 'Tags List', tags_path %>
@@ -11,7 +12,11 @@
 <ul>
   <% @tag.hobbies.each do |hobby| %>
     <li>
-      <%= link_to hobby.tags, hobby_path(hobby) %>
+      <h3><%= link_to hobby.name, hobby_path(hobby) %></h3>
     </li>
+    <% if admin_signed_in? || hobby.user == current_user %>
+      <%= link_to "削除", tag_path(hobby.tags.first), method: :delete, class:"btn btn-danger btn-sm" %>
+    <% end %>
   <% end %>
 </ul>
+</div>
