@@ -3,7 +3,7 @@
 			<%= render "comment", hobby: @hobby, hobby_comment: @hobby_comment %>
 	</div>
 	<div class="col-md-6 order-md-1 ml-2">
-    <h2 class="section-ttl text-center">詳細</h2>
+    <h3 class="section-ttl text-center"><%= @hobby.user.name %>さんの詳細ページ</h3>
     <table class="table table-bordered mx-auto">
       <thead>
         <tr>
@@ -27,7 +27,7 @@
         </tr>
         	<tr>
           <td class="text-center" colspan="2">
-            <%= link_to "削除する", @hobby, method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか?" } %>
+            <%= link_to "削除する", admin_hobby_path(@hobby), method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか?" } %>
           </td>
       </tbody>
     </table>

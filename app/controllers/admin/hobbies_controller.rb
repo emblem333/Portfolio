@@ -33,7 +33,7 @@ class Admin::HobbiesController < ApplicationController
   end
 
   def destroy
-    @hobby.destroy(admin_hobby_path)
+    @hobby.destroy
     redirect_to admin_hobbies_path
   end
 
