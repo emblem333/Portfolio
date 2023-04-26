@@ -15,9 +15,9 @@ body,main {
   box-sizing: border-box;
 }
 
- /*body, main {*/
-  /*background-color: #66FFFF;  ここに新しい背景色を指定します */
-/*}*/
+ body, main {
+  background-color: #66FFFF;  /*ここに新しい背景色を指定します*/
+}
 
 .container {
   max-width: 980px;
