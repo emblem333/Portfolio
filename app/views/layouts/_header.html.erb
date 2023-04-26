@@ -3,71 +3,65 @@
   <ul class="navbar navbar-expand-lg">
     <strong class="text-color">ようこそ、<%= current_user.name %>さん！</strong>
   </ul>
-  <ul class="nav col-6 col-sm-auto col-lg-auto ml-5 justify-content-end">
-    <li class="nav-item">
-      <%= link_to mypage_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' do %>
-      <i class="far fa-user"></i>MyPage
-      <%end%>
-    </li>
+  <div class= "justify-content-end">
+    <ul class="nav col-6 col-sm-auto col-lg-auto ml-5">
+      <li class="nav-item">
+        <%= link_to mypage_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' do %>
+        <i class="fas fa-user"></i> MyPage
+        <%end%>
+      </li>
+      <li class="nav-item">
+        <%= link_to new_hobby_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' do %>
+        <i class="fas fa-file"></i> 新規投稿
+        <%end%>
+      </li>
+      <li class="nav-item">
+        <%= link_to hobbies_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' do %>
+        <i class="fas fa-file-alt"></i> 趣味一覧
+        <%end%>
+      </li>
+      <li class="nav-item">
+        <%= link_to tags_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' do %>
+        <i class="fas fa-tags"></i> タグ一覧
+        <%end%>
+      </li>
+      <li class="nav-item">
+        <%= link_to destroy_user_session_path, method: :delete, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' do %>
+        <i class="fas fa-door-open"></i> ログアウト
+        <%end%>
+      </li>
+    </ul>
 
-    <li class="nav-item">
-      <%= link_to "新規投稿", new_hobby_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' %>
-    </li>
+  <% elsif admin_signed_in? %>
+    <ul class="navbar navbar-expand-lg">
+      <div class="text-light">管理者でログインしています</div>
+    </ul>
+    <ul class="nav col-6 col-sm-3 col-lg-auto ml-5 justify-content-end ">
+      <li class="nav-item">
+        <%= link_to "投稿一覧", admin_hobbies_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "会員一覧", admin_users_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' %>
+        </li>
+      <li class="nav-item">
+        <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' %>
+      </li>
+    </ul>
 
-    <li class="nav-item">
-      <%= link_to "趣味一覧", hobbies_path, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to "タグ一覧", tags_path, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
-    </li>
-  </ul>
-
-<% elsif admin_signed_in? %>
-  <ul class="navbar navbar-expand-lg">
-    <div class="text-light">管理者でログインしています</div>
-  </ul>
-  <ul class="nav col-6 col-sm-3 col-lg-auto ml-5 justify-content-end ">
-    <li class="nav-item">
-      <%= link_to "投稿一覧", admin_hobbies_path, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to "会員一覧", admin_users_path, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
-    </li>
-
-    <li class="nav-item">
-      <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
-    </li>
-  </ul>
-<% else %>
-<div class="row">
+  <% else %>
+  <div class="row">
     <div class="col-md">
       <ul class="nav col-6 col-sm-3 col-lg-auto my-2 justify-content-end my-md-0">
-
-
         <li class="nav-item">
-          <%#= link_to "About", about_path, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
+          <%= link_to "新規登録", new_user_registration_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' %>
         </li>
-
         <li class="nav-item">
-          <%= link_to "趣味一覧", hobbies_path, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
-        </li>
-
+          <%= link_to "ログイン", new_user_session_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' %>
         <li class="nav-item">
-          <%= link_to "新規登録", new_user_registration_path, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to "ログイン", new_user_session_path, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
-        <li class="nav-item">
-          <%= link_to "管理者ログイン", new_admin_session_path, class: 'mx-1 nav-link btn btn-light btn-sm mr-2' %>
+          <%= link_to "管理者ログイン", new_admin_session_path, class: 'mx-1 nav-link btn btn-info btn-sm mr-2' %>
         </li>
       </ul>
     </div>
   </div>
 <% end %>
+</div>
