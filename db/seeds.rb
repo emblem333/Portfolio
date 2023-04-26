@@ -38,16 +38,40 @@ Genre.create!(
 # Hobbyモデルに新しいホビーを保存する
 hobby = Hobby.new
   hobby.user = User.find_by(id:"1")# ユーザーを検索して関連付け
+  hobby.name = "野球"                          # ホビーの名前を指定
+  hobby.introduction = "最近プロ野球も盛り上がってるし、みなさんも始めてみよう！"                  # ホビーの紹介文を指定
+  hobby.genre_id = 1                           # ホビーのジャンルIDを指定
+  hobby.save                        #ホビーデータ保存
+  hobby.save_tags("本格派 中級者")    # タグを保存
+
+  hobby = Hobby.new
+  hobby.user = User.find_by(id:"2")# ユーザーを検索して関連付け
+  hobby.name = "ピアノ"                          # ホビーの名前を指定
+  hobby.introduction = "本体は高いけど、電子ピアノならリーズナブルで簡単に始められます！生音にこだわりたいならアップライトも有り！"                  # ホビーの紹介文を指定
+  hobby.genre_id = 2                           # ホビーのジャンルIDを指定
+  hobby.save                        #ホビーデータ保存
+  hobby.save_tags("初心者オススメ 中級者")    # タグを保存
+
+  hobby = Hobby.new
+  hobby.user = User.find_by(id:"3")# ユーザーを検索して関連付け
+  hobby.name = "キャンプ"                          # ホビーの名前を指定
+  hobby.introduction = "日頃の疲れを非日常でもあるキャンプで癒してみませんか？栃木の「ニュー霧降」新潟の「スノーピーク・ヘッドクォーターズ」は最高でした！"                  # ホビーの紹介文を指定
+  hobby.genre_id = 3                           # ホビーのジャンルIDを指定
+  hobby.save                        #ホビーデータ保存
+  hobby.save_tags("非日常 初心者オススメ")    # タグを保存
+
+  hobby = Hobby.new
+  hobby.user = User.find_by(id:"4")# ユーザーを検索して関連付け
   hobby.name = "test"                          # ホビーの名前を指定
   hobby.introduction = "test"                  # ホビーの紹介文を指定
-  hobby.genre_id = 1                           # ホビーのジャンルIDを指定
+  hobby.genre_id = 4                           # ホビーのジャンルIDを指定
   hobby.save                        #ホビーデータ保存
   hobby.save_tags("test test2 test3")    # タグを保存
 
-#hobby = Hobby.new
-#  hobby.user = User.find_by(name: "次郎")
-#  name = "test"
-#  introduction = "test"
-#  genre_id = 2
-#  hobby.save
-#  hobby.save_tags("test4 test5 test6")
+  hobby = Hobby.new
+  hobby.user = User.find_by(id:"5")# ユーザーを検索して関連付け
+  hobby.name = "test"                          # ホビーの名前を指定
+  hobby.introduction = "test"                  # ホビーの紹介文を指定
+  hobby.genre_id = 5                           # ホビーのジャンルIDを指定
+  hobby.save                        #ホビーデータ保存
+  hobby.save_tags("test test2 test3")    # タグを保存
