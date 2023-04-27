@@ -2,8 +2,3 @@
 	<h2 class="section-ttl"><%= @hobby.name %>の編集</h2>
   <%= render 'form', hobby: @hobby, url: hobby_path(@hobby), submit: '更新' %>
 </section>
-
-
-<%#= form_with model: @hobby do |tag| %>
-  <%#= render 'form', tag: tag %>
-<%# end %>

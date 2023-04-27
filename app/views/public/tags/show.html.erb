@@ -1,6 +1,5 @@
 <div class="container-fluid">
 
-  <%#= link_to 'Tags List', tags_path %>
   <% if admin_signed_in? %>
   <%= link_to 'Delete', tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'} %>
   <%end%>
