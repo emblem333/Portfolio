@@ -31,16 +31,16 @@ class Public::HobbiesController < ApplicationController
   def create
     @hobby = Hobby.new(hobby_params)
     @hobby.user_id = current_user.id
-
     if @hobby.save
-      tags = Vision.get_image_data(@hobby.image)#VisionAI
-      tags.each do |tag|
-        @hobby.tags.create(name: tag)
-      end
       @hobby.save_tags(params[:hobby][:tag])
       redirect_to hobby_path(@hobby)
     else
       render :new
+    end
+
+    tags = Vision.get_image_data(@hobby.image)#VisionAI
+    tags.each do |tag|
+      @hobby.tags.create(name: tag)
     end
   end
 
