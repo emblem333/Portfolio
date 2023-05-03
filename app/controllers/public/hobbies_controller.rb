@@ -31,7 +31,12 @@ class Public::HobbiesController < ApplicationController
   def create
     @hobby = Hobby.new(hobby_params)
     @hobby.user_id = current_user.id
+
     if @hobby.save
+      tags = Vision.get_image_data(@hobby.image)#VisionAI
+      tags.each do |tag|
+        @hobby.tags.create(name: tag)
+      end
       @hobby.save_tags(params[:hobby][:tag])
       redirect_to hobby_path(@hobby)
     else
@@ -46,7 +51,7 @@ class Public::HobbiesController < ApplicationController
     #@hobby.update(hobby_params) ? (redirect_to hobbies_path(@hobby)) : (render :edit)
     if @hobby.update(hobby_params)
       @hobby.save_tags(params[:hobby][:tag])
-      # タグの更新
+
       # 成功したら投稿記事へリダイレクト
       redirect_to hobbies_path(@hobby)
     else

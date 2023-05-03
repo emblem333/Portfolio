@@ -28,6 +28,7 @@
             <td class = "text-center">
               <% @hobby.tags.each do |tag| %>
                 <%= link_to tag.name, tag_path(tag),class: "btn btn-outline-dark" %>
+                <%#= tag.vision %>
               <% end %>
             </td>
           </tr>
