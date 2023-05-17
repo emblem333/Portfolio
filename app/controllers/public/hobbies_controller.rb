@@ -37,7 +37,6 @@ class Public::HobbiesController < ApplicationController
     else
       render :new
     end
-
     tags = Vision.get_image_data(@hobby.image)#VisionAI
     tags.each do |tag|
       @hobby.tags.create(name: tag)
