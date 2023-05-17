@@ -6,9 +6,11 @@
   <div class="row">
     <div class="col-md-1">
       <h5>ジャンル一覧</h5>
-      <% @genres.each do |genre| %>
-        <%= link_to genre.name, hobbies_path(genre_id: genre.id), class: "btn btn-primary mb-2" %>
-      <% end %></br>
+        <select class= "form-control">
+          <% @genres.each do |genre| %>
+          <option><%= link_to genre.name %></option>
+          <% end %></select>
+          <!--(genre_id: genre.id)-->
       <h5>現在の有効<br>タグ</h5>
 	  	<% @tags.each do |tag| %>
 	  		<%= link_to tag.name, tag_path(tag),class: "btn btn-outline-dark" %>
@@ -18,7 +20,6 @@
     <div class="container">
       <% if params[:genre_id] %>
         <h2><%= @genre.name %>の趣味一覧 (全<%= @all_hobbies_count %>件)</h2>
-        <!--<h3><%#= @genres.name %>の投稿は現在ありませんでした。</h3>-->
       <% else %>
         <h2>趣味一覧 (全<%= @all_hobbies_count %>件)</h2>
       <% end %>
