@@ -6,9 +6,10 @@
   <div class="row">
     <div class="col-md-1">
       <h5>ジャンル一覧</h5>
+      <%= select_tag 'example', options_for_select([['Option 1'], ['Option 2']]) %>
         <select class= "form-control">
           <% @genres.each do |genre| %>
-          <option><%= link_to genre.name %></option>
+          <option><%= genre.name %></option>
           <% end %></select>
           <!--(genre_id: genre.id)-->
       <h5>現在の有効<br>タグ</h5>
