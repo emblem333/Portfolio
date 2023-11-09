@@ -9,7 +9,7 @@
       <%#= select_tag 'example', options_for_select([['Option 1'], ['Option 2']]) %>
         <select class= "form-control">
           <% @genres.each do |genre| %>
-          <option><%= genre.name %></option>
+          <!--<option><%#= genre.name %></option>-->
           <option><%= link_to genre.name, hobbies_path(genre_id: genre.id) %></option>
           <% end %></select>
           <!--(genre_id: genre.id)-->
